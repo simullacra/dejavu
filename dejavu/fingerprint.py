@@ -13,7 +13,9 @@ IDX_TIME_J = 1
 ######################################################################
 # Sampling rate, related to the Nyquist conditions, which affects
 # the range frequencies we can detect.
-DEFAULT_FS = 44100
+DEFAULT_FS = 8000
+#edited by desu 
+#set to 8000 for pcm a-law files
 
 ######################################################################
 # Size of the FFT window, affects frequency granularity
@@ -101,7 +103,10 @@ def get_2D_peaks(arr2D, plot=False, amp_min=DEFAULT_AMP_MIN):
 									   border_value=1)
 
 	# Boolean mask of arr2D with True at peaks
-	detected_peaks = local_max - eroded_background
+	# changed - to ^ since it's a deprecated operator
+	# desu
+	
+	detected_peaks = local_max ^ eroded_background
 
 	# extract peaks
 	amps = arr2D[detected_peaks]
